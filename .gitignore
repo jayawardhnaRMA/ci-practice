@@ -9,3 +9,6 @@ __pycache__/
 
 # pytest cache
 .pytest_cache/
+
+# Built website (made by build_site.py)
+_site/

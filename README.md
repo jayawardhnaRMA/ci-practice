@@ -26,7 +26,7 @@ pytest
 The version number lives in one place only: `version.py`.
 
 ```python
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 ```
 
 We use Semantic Versioning: `MAJOR.MINOR.PATCH`.
@@ -44,7 +44,7 @@ python main.py --version
 Output:
 
 ```
-ci-practice version 1.0.0
+ci-practice version 1.1.0
 ```
 
 ### How to release a new version
@@ -67,6 +67,24 @@ ci-practice version 1.0.0
    ```
 
 When the tag reaches GitHub, the **Release** workflow starts. It runs the
-tests, checks that the tag matches `version.py`, and creates a GitHub Release.
-If the tag and `version.py` are different, the workflow fails and no release
-is made.
+tests, checks that the tag matches `version.py`, creates a GitHub Release,
+and publishes the website.
+If the tag and `version.py` are different, the workflow fails, no release
+is made, and the website is not changed.
+
+## Website
+
+The website is here: https://jayawardhnarma.github.io/ci-practice/
+
+- `site/index.html` is the page template. `{{VERSION}}` and `{{DEMO_ROWS}}`
+  are filled in by `build_site.py`.
+- The website is published only when a new version is released (see above).
+
+To build and look at the page on your computer:
+
+```bash
+python build_site.py
+```
+
+Then open `_site/index.html` in your browser. The `_site` folder is not
+saved in Git.
